@@ -1,0 +1,64 @@
+<h1 id="git使用">Git使用</h1>
+<h2 id="安装与配置">安装与配置</h2>
+<h3 id="安装">安装</h3>
+<p>Linux平台安装git（ubuntu）,或者更老一点的ubuntu系列Linux（git-core）</p>
+<p><code>sudo apt-get install git</code></p>
+<p><code>sudo apt-get install git-core</code></p>
+<p>其他的Linux则使用源码安装</p>
+<p><code>./configure --prefix = xxx</code></p>
+<p><code>make</code></p>
+<p><code>make install</code></p>
+<h3 id="配置">配置</h3>
+<p>git用户和对应email配置</p>
+<p><code>git config --global user.name &quot;bingo&quot;</code></p>
+<p><code>git config --global user.email &quot;xxx@xxx.com&quot;</code></p>
+<h2 id="初始化">初始化</h2>
+<ul>
+<li>创建文件夹，然后初始化</li>
+<li>添加文件，并提交到本地版本库</li>
+</ul>
+<p><code>mkdir repo</code></p>
+<p><code>cd repo</code></p>
+<p><code>git init</code></p>
+<p><code>git add Readme.txt 或者 . 或者 sort/ :把文件加入暂存区</code></p>
+<p><code>git commit -m &quot;wrote a readme file&quot; :把暂存区内容提交到分支</code></p>
+<h2 id="版本">版本</h2>
+<p>用户可以具体查看有哪些地方有更该，然后再提交</p>
+<p><code>git status</code></p>
+<p><code>git diff 查看哪里有更改</code></p>
+<p>如果有多个版本，需要回退的时候可以查看</p>
+<p><code>git log</code></p>
+<p><code>git log --pretty=oneline</code></p>
+<p>回退</p>
+<ul>
+<li>HEAD^表示上一个版本</li>
+<li>HEAD^^表示上两个版本</li>
+<li>HEAD~100表示往前退100个版本</li>
+</ul>
+<p><code>git reset --hard HEAD^</code></p>
+<p>若想再回到新的版本，则要么记起之前版本号，要么从命令记录中查看 * <code>git reset --hard 3628164</code> * <code>git reflog</code></p>
+<blockquote>
+<p><strong>git add</strong>指示把修改放入暂存区，只有commit以后才会放入版本库</p>
+</blockquote>
+<p><code>git checkout -- readme.txt :清除暂存区的内容****</code> 用版本库中 内容替换暂存区</p>
+<p><code>git reset HEAD readme.txt 也可以清除暂存区</code></p>
+<h2 id="远程仓库">远程仓库</h2>
+<h3 id="github建库然后与本地关联">Github建库然后与本地关联</h3>
+<p><code>git remote add origin git@github.com:michaelliao/learngit.git</code></p>
+<p><code>git push -u origin master 关联上并且推送上去</code></p>
+<p>以后每次推送就可以直接使用</p>
+<p><code>git push origin master</code></p>
+<h3 id="克隆clone">克隆clone</h3>
+<p><code>git clone git@github.com:michaelliao/gitskills.git</code></p>
+<h2 id="分支管理">分支管理</h2>
+<p><code>git checkout -b dev</code> 等效与以下两条命令 * git branch dev 创建分支dev * git checkout dev 转换到制定分支</p>
+<p><code>git branch 查看当前分支</code></p>
+<p><code>git merge dev 合并制定分支到当前分支</code></p>
+<p><code>git branch -d dev 删除分支dev</code></p>
+<h3 id="存在分歧">存在分歧</h3>
+<p><code>git merge feature1</code></p>
+<p><code>git status</code></p>
+<p>手工解决冲突以后</p>
+<p><code>git add readme.txt</code></p>
+<p><code>git commit -m &quot;xxxx&quot;</code></p>
+<p><code>git log --graph</code> <code>--pretty=oneline --abbrev-commit</code></p>
